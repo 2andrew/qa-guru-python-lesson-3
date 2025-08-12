@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "qa-guru-python-lesson-3"
+description = "qa-guru-python-lesson-3"
+version = "1.0.0"
+authors = ["Andrii Shynkarov"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+fastapi = "^0.116.1"
+email-validator = "^2.2.0"
+requests = "^2.32.4"
+pydantic = "^2.11.7"
+fastapi-pagination = "^0.13.3"
+uvicorn = "^0.35.0"
+ruff = "^0.12.8"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+python-dotenv = "^1.1.1"
+
+[tool.ruff]
+line-length = 100
+lint.ignore = ["F403", "F405"]
+exclude = [
+    ".git",
+    ".idea",
+    "__pycache__"
+]

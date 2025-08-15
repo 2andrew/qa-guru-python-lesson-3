@@ -1,8 +1,16 @@
 <h4>Homework:</h4>
 
-1. Expand smoke test coverage with microservice availability tests - `/status` endpoint 
-2. Use fastapi-pagination library for basic pagination in endpoints that return a list of objects
-3. Add pagination tests. There should be enough test data to check pagination (at least 10)
-   1. expected number of objects in the response
-   2. correct number of pages for different size values
-   3. different data is returned for different page values
+1. Run postgresql in docker.
+2. Expand test coverage:
+- Post: creation. Preconditions: prepared test data
+- Delete: deletion. Preconditions: created user
+- Patch: change. Preconditions: created user
+
+Optional:
+- Get after create, update
+- 405 error test: Preconditions: nothing needed
+- 404 422 errors on delete patch
+- 404 on deleted user
+- user flow: create, read, update, delete
+- test data validity (email, URL)
+- send model without field for creation

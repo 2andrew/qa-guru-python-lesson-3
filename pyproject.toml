@@ -2,6 +2,7 @@
 name = "qa-guru-python-lesson-3"
 description = "qa-guru-python-lesson-3"
 version = "1.0.0"
+package-mode = false
 authors = ["Andrii Shynkarov"]
 readme = "README.md"
 

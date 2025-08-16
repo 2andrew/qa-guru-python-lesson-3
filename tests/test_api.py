@@ -1,6 +1,7 @@
 import json
 from http import HTTPStatus
 from math import ceil
+from pathlib import Path
 
 import pytest
 import requests
@@ -11,7 +12,9 @@ from tests.data_generators.UserMaker import UserGenerator
 
 @pytest.fixture(scope="module")
 def fill_test_data(app_url):
-    with open("users.json") as f:
+    root = Path(__file__).resolve().parent.parent
+    data_path = root / "users.json"
+    with data_path.open(encoding="utf-8") as f:
         test_data_users = json.load(f)
     api_users = []
     for user in test_data_users:

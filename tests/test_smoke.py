@@ -1,10 +1,4 @@
-
-from http import HTTPStatus
-
-import requests
-
-def test_availability(app_url):
-    response = requests.get(f"{app_url}/status/")
-    assert response.status_code == HTTPStatus.OK
+def test_availability(status_client):
+    response = status_client.get()
     is_users_loaded = response.json()['database']
     assert is_users_loaded is True

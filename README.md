@@ -1,0 +1,3 @@
+- [X] Create a class with methods for each API endpoint
+- [X] Class should accept an environment variable and create a session with a built-in baseurl for the selected environment
+- [X] The environment should be passed through options and returned by the fixture

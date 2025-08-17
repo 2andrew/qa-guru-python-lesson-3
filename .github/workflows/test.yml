@@ -23,7 +23,7 @@ jobs:
       - run: poetry install --no-interaction --no-ansi
       - run: docker compose build
       - run: docker compose up -d
-      - run: sleep 5
+      - run: sleep 15
       - run: poetry run pytest tests --junit-xml=test-results.xml
         env:
           APP_URL: http://127.0.0.1:8002

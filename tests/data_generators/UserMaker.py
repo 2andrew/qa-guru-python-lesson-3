@@ -8,7 +8,7 @@ class UserGenerator:
 
     def create(self, payload: dict) -> dict:
         resp = requests.post(f"{self.app_url}/api/users/", json=payload)
-        assert resp.status_code == HTTPStatus.CREATED
+        assert resp.status_code == HTTPStatus.CREATED, f"{resp.status_code} {resp.text}"
         user = resp.json()
         self._created_ids.append(user["id"])
         return user

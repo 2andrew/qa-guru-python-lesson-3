@@ -1,4 +1,5 @@
 from http import HTTPStatus
+from sqlite3 import IntegrityError
 from typing import Iterable, Type
 
 from fastapi import HTTPException
@@ -20,10 +21,15 @@ def get_users() -> Iterable[User]:
 
 def create_user(user: User) -> User:
     with Session(engine) as session:
-        session.add(user)
-        session.commit()
-        session.refresh(user)
-        return user
+        try:
+            user.id = None
+            session.add(user)
+            session.commit()
+            session.refresh(user)
+            return user
+        except IntegrityError:
+            session.rollback()
+            raise HTTPException(status_code=409, detail="User already exists")
 
 
 def update_user(user_id: int, user: User) -> Type[User]:

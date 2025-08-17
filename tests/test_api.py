@@ -10,7 +10,7 @@ from app.models.User import User
 from tests.data_generators.UserMaker import UserGenerator
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def fill_test_data(app_url):
     root = Path(__file__).resolve().parent.parent
     data_path = root / "users.json"
@@ -60,8 +60,9 @@ def test_users_no_duplicates(users):
 
 
 @pytest.mark.usefixtures("fill_test_data")
-@pytest.mark.parametrize("user_id", [1, 6, 12])
-def test_user(app_url, user_id):
+@pytest.mark.parametrize("idx", [0, 5, 11])
+def test_user(app_url, fill_test_data, idx):
+    user_id = fill_test_data[idx]
     response = requests.get(f"{app_url}/api/users/{user_id}")
     assert response.status_code == HTTPStatus.OK
 
@@ -70,8 +71,8 @@ def test_user(app_url, user_id):
 
 
 @pytest.mark.usefixtures("fill_test_data")
-@pytest.mark.parametrize("user_id", [13])
-def test_user_nonexistent_values(app_url, user_id):
+def test_user_nonexistent_values(app_url, fill_test_data):
+    user_id = max(fill_test_data) + 1
     response = requests.get(f"{app_url}/api/users/{user_id}")
     assert response.status_code == HTTPStatus.NOT_FOUND
 

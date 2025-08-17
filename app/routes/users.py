@@ -33,7 +33,7 @@ def create_user(user: User) -> User:
         UserCreate.model_validate(user.model_dump())
     except ValidationError as e:
         raise RequestValidationError(e.errors())
-    return users.create_user(user)
+    return users.create_user(User(**user.model_dump()))
 
 
 @router.patch("/{user_id}", status_code=HTTPStatus.OK)

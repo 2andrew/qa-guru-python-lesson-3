@@ -2,6 +2,7 @@
 name = "qa-guru-python-lesson-3"
 description = "qa-guru-python-lesson-3"
 version = "1.0.0"
+package-mode = false
 authors = ["Andrii Shynkarov"]
 readme = "README.md"
 
@@ -14,15 +15,20 @@ pydantic = "^2.11.7"
 fastapi-pagination = "^0.13.3"
 uvicorn = "^0.35.0"
 ruff = "^0.12.8"
-
+psycopg2-binary = "^2.9.10"
+sqlalchemy = "^2.0.43"
+sqlmodel = "^0.0.24"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.1"
 python-dotenv = "^1.1.1"
 
+[tool.pytest.ini_options]
+pythonpath = '.'
+
 [tool.ruff]
 line-length = 100
-lint.ignore = ["F403", "F405"]
+lint.ignore = ["F403", "F405", "E402"]
 exclude = [
     ".git",
     ".idea",

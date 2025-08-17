@@ -18,6 +18,7 @@ ruff = "^0.12.8"
 psycopg2-binary = "^2.9.10"
 sqlalchemy = "^2.0.43"
 sqlmodel = "^0.0.24"
+curlify = "^3.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.1"
